@@ -23,6 +23,10 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: Debug secrets
+        run: |
+          echo "DB_USERNAME=${DB_USERNAME}"
+
       - name: Checkout
         uses: actions/checkout@v4
 
