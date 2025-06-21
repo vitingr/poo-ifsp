@@ -16,3 +16,4 @@ public record GuestDto(
   LocalDateTime created_at,
   LocalDateTime updated_at
 ) {}
+
