@@ -1,0 +1,59 @@
+name: "(CI): Verify Build And Plan"
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths-ignore:
+      - /tf/**
+      - '.github/workflows/infra_**'
+    branches:
+      - master
+
+env:
+  DB_URL: ${{ env.DB_URL }}
+  DB_PORT: ${{ env.DB_PORT }}
+  DB_NAME: ${{ env.DB_DATABASE }}
+  DB_USERNAME: ${{ env.DB_USERNAME }}
+  DB_PASSWORD: ${{ env.DB_PASSWORD }}
+
+jobs:
+  continuous-integration:
+    name: "Verify Build And Plan"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ runner.os }}-
+
+      - name: Build with Maven
+        run: mvn clean install -e -Dspring.profiles.active=secrets
+
+      - name: Archive JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-app
+          path: target/*.jar
+
+      - name: Docker Build
+        run : |
+          docker build -t ci -f Dockerfile .
+
+      - name: Authorization
+        run: |
+          echo "Your Pull Request has been authorized successfully! 🥳"
