@@ -5,7 +5,6 @@ variable "project_name" {}
 variable "region" {}
 variable "env" {}
 
-variable "role_arn" {}
 variable "certificate_arn" {}
 
 variable "ec2_name" {

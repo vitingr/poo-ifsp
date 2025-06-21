@@ -7,7 +7,7 @@ terraform {
     encrypt = true
 
     assume_role {
-      role_arn = var.role_arn
+      role_arn = var.certificate_arn
     }
   }
 

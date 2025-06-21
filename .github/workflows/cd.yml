@@ -78,12 +78,16 @@ jobs:
           TF_VAR_ec2_name: ${{ secrets.EC2_NAME }}
           TF_VAR_project_name: ${{ secrets.PROJECT_NAME }}
           TF_VAR_region: ${{ secrets.AWS_REGION }}
-          TF_VAR_role_arn: ${{ secrets.ROLE_ARN }}
+          TF_VAR_certificate_arn: ${{ secrets.CERTIFICATE_ARN }}
           TF_VAR_aws_bucket_name: ${{ secrets.AWS_BUCKET_NAME }}
           TF_VAR_aws_bucket_key: ${{ secrets.AWS_BUCKET_KEY }}
         run: |
           cd tf
-          terraform init
+          terraform init \
+            -backend-config="bucket=${var.aws_bucket_name}" \
+            -backend-config="key=${var.aws_bucket_key}" \
+            -backend-config="region=${var.region}" \
+            -backend-config="certificate_arn=${var.certificate_arn}"
           terraform validate
           terraform plan
           terraform apply -auto-approve
