@@ -9,18 +9,18 @@ on:
     branches:
       - master
 
+env:
+  DB_URL: ${{ secrets.DB_URL }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_NAME: ${{ secrets.DB_DATABASE }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
 jobs:
   continuous-integration:
     name: "Verify Build And Plan"
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
-    env:
-      DB_HOST: localhost
-      DB_PORT: 5434
-      DB_NAME: database
-      DB_USERNAME: postgres
-      DB_PASSWORD: password
 
     steps:
       - name: Checkout
