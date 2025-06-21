@@ -81,6 +81,7 @@ jobs:
           TF_VAR_certificate_arn: ${{ secrets.CERTIFICATE_ARN }}
           TF_VAR_aws_bucket_name: ${{ secrets.AWS_BUCKET_NAME }}
           TF_VAR_aws_bucket_key: ${{ secrets.AWS_BUCKET_KEY }}
+          TF_VAR_env: "PROD"
         run: |
           cd tf
           terraform init \
