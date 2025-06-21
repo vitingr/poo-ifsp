@@ -20,7 +20,7 @@ terraform {
 }
 
 resource "aws_security_group" "securitygroup" {
-  name        = "securitygroup"
+  name        = "poo-ifsp-securitygroup"
   description = "Allow HTTP and Internet Access"
 
   ingress {
