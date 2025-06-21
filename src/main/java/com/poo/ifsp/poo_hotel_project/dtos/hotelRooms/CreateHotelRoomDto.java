@@ -1,4 +1,4 @@
-package com.poo.ifsp.poo_hotel_project.dtos.hotelRoom;
+package com.poo.ifsp.poo_hotel_project.dtos.hotelRooms;
 
 import com.poo.ifsp.poo_hotel_project.domain.enums.RoomType;
 import jakarta.validation.constraints.*;

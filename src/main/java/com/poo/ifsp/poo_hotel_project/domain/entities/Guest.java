@@ -1,4 +1,4 @@
-package com.poo.ifsp.poo_hotel_project.domain.models;
+package com.poo.ifsp.poo_hotel_project.domain.entities;
 
 import jakarta.persistence.*;
 

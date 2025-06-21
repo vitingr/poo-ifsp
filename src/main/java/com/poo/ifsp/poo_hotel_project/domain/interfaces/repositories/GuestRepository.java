@@ -1,6 +1,6 @@
 package com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories;
 
-import com.poo.ifsp.poo_hotel_project.domain.models.Guest;
+import com.poo.ifsp.poo_hotel_project.domain.entities.Guest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

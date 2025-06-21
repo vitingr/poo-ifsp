@@ -1,0 +1,115 @@
+package com.poo.ifsp.poo_hotel_project.domain.entities;
+
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "tb_reservations")
+public class Reservation implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private UUID id;
+
+  @Column(nullable = false)
+  private UUID guest_id;
+
+  @Column(nullable = false)
+  private UUID room_id;
+
+  @Column(nullable = false)
+  private LocalDateTime start_date;
+
+  @Column(nullable = false)
+  private LocalDateTime end_date;
+
+  @Column(precision = 10, scale = 2, nullable = false)
+  private BigDecimal total_price;
+
+  @Column(nullable = false, updatable = false)
+  private LocalDateTime created_at;
+
+  @Column(nullable = true)
+  private LocalDateTime updated_at;
+
+  @PrePersist
+  protected void onCreate() {
+    this.created_at = LocalDateTime.now();
+    this.updated_at = LocalDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.created_at = LocalDateTime.now();
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public UUID getGuest_id() {
+    return guest_id;
+  }
+
+  public void setGuest_id(UUID guest_id) {
+    this.guest_id = guest_id;
+  }
+
+  public UUID getRoom_id() {
+    return room_id;
+  }
+
+  public void setRoom_id(UUID room_id) {
+    this.room_id = room_id;
+  }
+
+  public LocalDateTime getStart_date() {
+    return start_date;
+  }
+
+  public void setStart_date(LocalDateTime start_date) {
+    this.start_date = start_date;
+  }
+
+  public LocalDateTime getEnd_date() {
+    return end_date;
+  }
+
+  public void setEnd_date(LocalDateTime end_date) {
+    this.end_date = end_date;
+  }
+
+  public BigDecimal getTotal_price() {
+    return total_price;
+  }
+
+  public void setTotal_price(BigDecimal total_price) {
+    this.total_price = total_price;
+  }
+
+  public LocalDateTime getCreated_at() {
+    return created_at;
+  }
+
+  public void setCreated_at(LocalDateTime created_at) {
+    this.created_at = created_at;
+  }
+
+  public LocalDateTime getUpdated_at() {
+    return updated_at;
+  }
+
+  public void setUpdated_at(LocalDateTime updated_at) {
+    this.updated_at = updated_at;
+  }
+}

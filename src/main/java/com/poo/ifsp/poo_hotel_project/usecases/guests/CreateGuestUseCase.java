@@ -1,9 +1,9 @@
 package com.poo.ifsp.poo_hotel_project.usecases.guests;
 
 import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.GuestRepository;
-import com.poo.ifsp.poo_hotel_project.domain.models.Guest;
-import com.poo.ifsp.poo_hotel_project.dtos.guest.CreateGuestDto;
-import com.poo.ifsp.poo_hotel_project.mappers.guest.CreateGuestMapper;
+import com.poo.ifsp.poo_hotel_project.domain.entities.Guest;
+import com.poo.ifsp.poo_hotel_project.dtos.guests.CreateGuestDto;
+import com.poo.ifsp.poo_hotel_project.mappers.guests.CreateGuestMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

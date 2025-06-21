@@ -1,4 +1,4 @@
-package com.poo.ifsp.poo_hotel_project.dtos.guest;
+package com.poo.ifsp.poo_hotel_project.dtos.guests;
 
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;

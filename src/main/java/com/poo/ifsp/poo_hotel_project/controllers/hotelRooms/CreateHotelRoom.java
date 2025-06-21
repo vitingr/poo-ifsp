@@ -1,7 +1,7 @@
-package com.poo.ifsp.poo_hotel_project.controllers.HotelRoom;
+package com.poo.ifsp.poo_hotel_project.controllers.hotelRooms;
 
-import com.poo.ifsp.poo_hotel_project.domain.models.HotelRoom;
-import com.poo.ifsp.poo_hotel_project.dtos.hotelRoom.CreateHotelRoomDto;
+import com.poo.ifsp.poo_hotel_project.domain.entities.HotelRoom;
+import com.poo.ifsp.poo_hotel_project.dtos.hotelRooms.CreateHotelRoomDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

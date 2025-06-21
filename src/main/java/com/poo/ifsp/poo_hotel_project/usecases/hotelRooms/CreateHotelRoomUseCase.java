@@ -1,9 +1,9 @@
 package com.poo.ifsp.poo_hotel_project.usecases.hotelRooms;
 
 import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.HotelRoomRepository;
-import com.poo.ifsp.poo_hotel_project.domain.models.HotelRoom;
-import com.poo.ifsp.poo_hotel_project.dtos.hotelRoom.CreateHotelRoomDto;
-import com.poo.ifsp.poo_hotel_project.mappers.hotelRoom.CreateHotelRoomMapper;
+import com.poo.ifsp.poo_hotel_project.domain.entities.HotelRoom;
+import com.poo.ifsp.poo_hotel_project.dtos.hotelRooms.CreateHotelRoomDto;
+import com.poo.ifsp.poo_hotel_project.mappers.hotelRooms.CreateHotelRoomMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

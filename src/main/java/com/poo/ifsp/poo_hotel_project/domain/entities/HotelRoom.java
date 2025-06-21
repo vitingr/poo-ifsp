@@ -1,4 +1,4 @@
-package com.poo.ifsp.poo_hotel_project.domain.models;
+package com.poo.ifsp.poo_hotel_project.domain.entities;
 
 import com.poo.ifsp.poo_hotel_project.domain.enums.RoomType;
 import jakarta.persistence.*;

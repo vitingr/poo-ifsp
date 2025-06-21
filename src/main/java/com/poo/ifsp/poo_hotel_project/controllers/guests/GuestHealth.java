@@ -1,4 +1,4 @@
-package com.poo.ifsp.poo_hotel_project.controllers.HotelRoom;
+package com.poo.ifsp.poo_hotel_project.controllers.hotelRooms;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

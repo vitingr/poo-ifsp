@@ -1,7 +1,7 @@
-package com.poo.ifsp.poo_hotel_project.controllers.Guest;
+package com.poo.ifsp.poo_hotel_project.controllers.guests;
 
-import com.poo.ifsp.poo_hotel_project.domain.models.Guest;
-import com.poo.ifsp.poo_hotel_project.dtos.guest.CreateGuestDto;
+import com.poo.ifsp.poo_hotel_project.domain.entities.Guest;
+import com.poo.ifsp.poo_hotel_project.dtos.guests.CreateGuestDto;
 import com.poo.ifsp.poo_hotel_project.usecases.guests.CreateGuestUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
