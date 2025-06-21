@@ -84,10 +84,11 @@ jobs:
         run: |
           cd tf
           terraform init \
-            -backend-config="bucket=${var.aws_bucket_name}" \
-            -backend-config="key=${var.aws_bucket_key}" \
-            -backend-config="region=${var.region}" \
-            -backend-config="certificate_arn=${var.certificate_arn}"
+            -backend-config="bucket=${TF_VAR_aws_bucket_name}" \
+            -backend-config="key=${TF_VAR_aws_bucket_key}" \
+            -backend-config="region=${TF_VAR_region}" \
+            -backend-config="encrypt=true"
+          
           terraform validate
           terraform plan
           terraform apply -auto-approve
