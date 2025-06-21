@@ -27,6 +27,12 @@ jobs:
 
       - name: Cache Maven packages
         uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ runner.os }}-
 
       - name: Build with Maven
         run: mvn clean install
