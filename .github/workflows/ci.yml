@@ -23,8 +23,8 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - name: Mostrar DB_USERNAME (debug)
-        run: echo "DB_USERNAME = $DB_USERNAME"
+      - name: Debug environment variables
+        run: env | grep DB_
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,7 +45,13 @@ jobs:
             maven-${{ runner.os }}-
 
       - name: Build with Maven
-        run: mvn clean install -e -Dspring.profiles.active=secrets
+        run: mvn clean install \
+            -Dspring.profiles.active=secrets \
+            -DDB_URL=${DB_URL} \
+            -DDB_PORT=${DB_PORT} \
+            -DDB_DATABASE=${DB_DATABASE} \
+            -DDB_USERNAME=${DB_USERNAME} \
+            -DDB_PASSWORD=${DB_PASSWORD}
 
       - name: Archive JAR
         uses: actions/upload-artifact@v4
