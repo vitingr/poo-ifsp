@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.poo.ifsp.poo_hotel_project.usecases.hotelRooms.CreateHotelRoomUseCase;
 
 @RestController
+@RequestMapping("/hotel-rooms")
 public class CreateHotelRoom {
   private final CreateHotelRoomUseCase createHotelRoomUseCase;
 
@@ -18,7 +20,7 @@ public class CreateHotelRoom {
     this.createHotelRoomUseCase = createHotelRoomUseCase;
   }
 
-  @PostMapping("/hotel-rooms")
+  @PostMapping
   public ResponseEntity<HotelRoom> createHotelRoom(@RequestBody @Valid CreateHotelRoomDto hotelRoomDto) {
     HotelRoom savedHotelRoom = createHotelRoomUseCase.execute(hotelRoomDto);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedHotelRoom);

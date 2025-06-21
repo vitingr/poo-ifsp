@@ -11,12 +11,11 @@ import java.util.UUID;
 
 @Service
 public class UpdateGuestUseCase {
-
   private final GuestRepository repository;
 
   public UpdateGuestUseCase(GuestRepository repository) {
-        this.repository = repository;
-    }
+    this.repository = repository;
+  }
 
   @Transactional
   public Optional<Guest> execute(UUID id, UpdateGuestDto dto) {
@@ -26,6 +25,7 @@ public class UpdateGuestUseCase {
         guest.setEmail(dto.email());
         guest.setAddress(dto.address());
         return guest;
-      });
+      }
+    );
   }
 }

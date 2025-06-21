@@ -1,7 +1,7 @@
 package com.poo.ifsp.poo_hotel_project.controllers.guests;
 
 import com.poo.ifsp.poo_hotel_project.dtos.guests.GuestDto;
-import com.poo.ifsp.poo_hotel_project.mappers.guest.GetGuestMapper;
+import com.poo.ifsp.poo_hotel_project.mappers.guests.GetGuestMapper;
 import com.poo.ifsp.poo_hotel_project.usecases.guests.GetGuestUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/guests")
 public class GetGuest {
-
   private final GetGuestUseCase useCase;
   private final GetGuestMapper mapper;
 

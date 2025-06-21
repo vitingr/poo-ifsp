@@ -8,17 +8,16 @@ import java.util.UUID;
 
 @Service
 public class DeleteGuestUseCase {
+  private final GuestRepository guestRepository;
 
-    private final GuestRepository guestRepository;
+  public DeleteGuestUseCase(GuestRepository guestRepository) {
+    this.guestRepository = guestRepository;
+  }
 
-    public DeleteGuestUseCase(GuestRepository guestRepository) {
-        this.guestRepository = guestRepository;
-    }
-
-    @Transactional
-    public boolean execute(UUID id) {
-        if (!guestRepository.existsById(id)) return false;
-        guestRepository.deleteById(id);
-        return true;
-    }
+  @Transactional
+  public boolean execute(UUID id) {
+    if (!guestRepository.existsById(id)) return false;
+    guestRepository.deleteById(id);
+    return true;
+  }
 }

@@ -1,6 +1,7 @@
 package com.poo.ifsp.poo_hotel_project.domain.entities;
 
 import com.poo.ifsp.poo_hotel_project.domain.enums.RoomType;
+import com.poo.ifsp.poo_hotel_project.dtos.hotelRooms.UpdateHotelRoomDto;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
@@ -177,5 +178,19 @@ public class HotelRoom implements Serializable {
 
   public void setUpdated_at(LocalDateTime updated_at) {
     this.updated_at = updated_at;
+  }
+
+  public void updateFromDto(UpdateHotelRoomDto dto) {
+    if (dto.floor() != null) this.setFloor(dto.floor());
+    if (dto.room_type() != null) this.setRoom_type(dto.room_type());
+    if (dto.beds_qtd() != null) this.setBeds_qtd(dto.beds_qtd());
+    if (dto.max_capacity() != null) this.setMax_capacity(dto.max_capacity());
+    if (dto.price_per_night() != null) this.setPrice_per_night(dto.price_per_night());
+    if (dto.is_available() != null) this.setIs_available(dto.is_available());
+    if (dto.description() != null) this.setDescription(dto.description());
+    if (dto.room_image() != null) this.setRoom_image(dto.room_image());
+    if (dto.has_wifi() != null) this.setHas_wifi(dto.has_wifi());
+    if (dto.has_tv() != null) this.setHas_tv(dto.has_tv());
+    this.setUpdated_at(LocalDateTime.now());
   }
 }

@@ -10,18 +10,17 @@ import java.util.UUID;
 
 @Service
 public class GetGuestUseCase {
-
   private final GuestRepository repository;
 
   public GetGuestUseCase(GuestRepository repository) {
-        this.repository = repository;
+    this.repository = repository;
   }
 
   public List<Guest> findAll() {
-        return repository.findAll();
-    }
+    return repository.findAll();
+  }
 
   public Optional<Guest> findById(UUID id) {
-        return repository.findById(id);
-    }
+    return repository.findById(id);
+  }
 }
