@@ -9,6 +9,13 @@ on:
     branches:
       - master
 
+env:
+  DB_URL: ${{ secrets.DB_URL }}
+  DB_PORT: ${{ secrets.DB_PORT }}
+  DB_NAME: ${{ secrets.DB_DATABASE }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
 jobs:
   build-deploy:
     name: "Build and Deploy"
@@ -35,7 +42,13 @@ jobs:
             maven-${{ runner.os }}-
 
       - name: Build with Maven
-        run: mvn clean install -e -Dspring.profiles.active=secrets
+        run: |
+          mvn clean install -Dspring.profiles.active=secrets \
+            -DDB_URL=${DB_URL} \
+            -DDB_PORT=${DB_PORT} \
+            -DDB_DATABASE=${DB_DATABASE} \
+            -DDB_USERNAME=${DB_USERNAME} \
+            -DDB_PASSWORD=${DB_PASSWORD}
 
       - name: Archive JAR
         uses: actions/upload-artifact@v4

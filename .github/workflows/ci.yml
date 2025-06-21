@@ -23,9 +23,6 @@ jobs:
     timeout-minutes: 20
 
     steps:
-      - name: Debug environment variables
-        run: env | grep DB_
-
       - name: Checkout
         uses: actions/checkout@v4
 
