@@ -59,9 +59,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key: ${{ env.AWS_ACCESS_KEY }}
-          aws-access-secret: ${{ env.AWS_ACCESS_SECRET }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -71,9 +71,9 @@ jobs:
 
       - name: Fill Environment Variables
         run: |
-          TF_VAR_ec2_name: "${{ env.EC2_NAME }}"
-          TF_VAR_project_name: "${{ env.PROJECT_NAME }}"
-          TF_VAR_region: "${{ env.AWS_REGION }}"
+          TF_VAR_ec2_name: "${{ secrets.EC2_NAME }}"
+          TF_VAR_project_name: "${{ secrets.PROJECT_NAME }}"
+          TF_VAR_region: "${{ secrets.AWS_REGION }}"
 
       - name: Terraform Verify
         id: fmt
