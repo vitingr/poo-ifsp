@@ -10,5 +10,6 @@ public record GetReservationDto(
         UUID room_id,
         LocalDateTime start_date,
         LocalDateTime end_date,
-        BigDecimal total_price
+        BigDecimal total_price,
+        boolean isExpired
 ) {}

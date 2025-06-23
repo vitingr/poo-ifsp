@@ -7,6 +7,4 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface CreateCheckinMapper {
   Checkin toEntity(CreateCheckinDto dto);
-
-  Checkin toDto(Checkin checkin);
 }

@@ -17,11 +17,11 @@ public class UpdateGuest {
     this.useCase = useCase;
   }
 
-  @PutMapping("/{id}")
+  @PatchMapping("/{id}")
   public ResponseEntity<Void> update(@PathVariable UUID id, @RequestBody @Valid UpdateGuestDto dto) {
     var result = useCase.execute(id, dto);
     return result.isPresent()
-      ? ResponseEntity.ok().build()
-      : ResponseEntity.notFound().build();
+            ? ResponseEntity.ok().build()
+            : ResponseEntity.notFound().build();
   }
 }
