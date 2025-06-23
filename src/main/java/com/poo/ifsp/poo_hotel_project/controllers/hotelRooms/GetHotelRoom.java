@@ -1,6 +1,8 @@
 package com.poo.ifsp.poo_hotel_project.controllers.hotelRooms;
 
+import com.poo.ifsp.poo_hotel_project.domain.entities.HotelRoom;
 import com.poo.ifsp.poo_hotel_project.dtos.hotelRooms.GetHotelRoomDto;
+import com.poo.ifsp.poo_hotel_project.dtos.hotelRooms.GetHotelRoomsByFloorDto;
 import com.poo.ifsp.poo_hotel_project.mappers.hotelRooms.GetHotelRoomMapper;
 import com.poo.ifsp.poo_hotel_project.usecases.hotelRooms.GetHotelRoomUseCase;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -35,5 +38,20 @@ public class GetHotelRoom {
     return getHotelRoomUseCase.findById(id)
       .map(hotelRoom -> ResponseEntity.ok(getHotelRoomMapper.toDto(hotelRoom)))
       .orElse(ResponseEntity.notFound().build());
+  }
+
+  @GetMapping("/grouped-by-floor")
+  public ResponseEntity<List<GetHotelRoomsByFloorDto>> getAllGroupedByFloor() {
+    Map<Integer, List<HotelRoom>> groupedRooms = getHotelRoomUseCase.findAllGroupedByFloor();
+
+    List<GetHotelRoomsByFloorDto> response = groupedRooms.entrySet().stream()
+      .map(entry -> new GetHotelRoomsByFloorDto(
+        entry.getKey(),
+        getHotelRoomMapper.toDtoList(entry.getValue())
+      ))
+      .sorted((a, b) -> Integer.compare(a.floor(), b.floor()))
+      .toList();
+
+    return ResponseEntity.ok(response);
   }
 }

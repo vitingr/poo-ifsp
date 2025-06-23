@@ -5,9 +5,6 @@ import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 public record CreateHotelRoomDto(
-  @NotBlank
-  String room_code,
-
   @Min(0)
   int floor,
 
