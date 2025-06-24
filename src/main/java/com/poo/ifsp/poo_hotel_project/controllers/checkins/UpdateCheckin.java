@@ -17,7 +17,7 @@ public class UpdateCheckin {
     this.updateCheckinUseCase = updateCheckinUseCase;
   }
 
-  @PutMapping("/{id}")
+  @PatchMapping("/{id}")
   public ResponseEntity<Void> update(@PathVariable UUID id, @RequestBody @Valid UpdateCheckinDto dto) {
     var result = updateCheckinUseCase.execute(id, dto);
     return result.isPresent()
