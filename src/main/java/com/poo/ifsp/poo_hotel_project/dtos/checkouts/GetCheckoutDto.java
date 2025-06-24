@@ -18,10 +18,10 @@ public record GetCheckoutDto(
   UUID room_id,
 
   @NotNull
-  LocalDateTime checkout_date,
+  UUID reservation_id,
 
   @NotNull
-  LocalDateTime checkout_estimated,
+  LocalDateTime checkout_date,
 
   @NotNull
   @DecimalMin(value = "0.0", inclusive = false)

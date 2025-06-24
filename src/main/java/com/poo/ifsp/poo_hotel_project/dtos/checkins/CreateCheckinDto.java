@@ -9,6 +9,9 @@ public record CreateCheckinDto(
   @NotNull()
   UUID guest_id,
 
+  @NotNull
+  UUID reservation_id,
+
   @NotNull()
   UUID room_id,
 
@@ -18,11 +21,6 @@ public record CreateCheckinDto(
 
   @NotNull()
   @Future()
-  LocalDateTime checkout_estimated,
-
-  @NotNull()
-  @DecimalMin(value = "0.00", inclusive = false)
-  @Digits(integer = 10, fraction = 2)
-  BigDecimal total_price
+  LocalDateTime checkout_estimated
 ) {
 }

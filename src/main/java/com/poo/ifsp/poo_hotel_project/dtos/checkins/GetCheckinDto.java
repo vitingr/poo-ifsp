@@ -1,23 +1,35 @@
 package com.poo.ifsp.poo_hotel_project.dtos.checkins;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record GetCheckinDto(
-   UUID id,
+  @NotNull
+  UUID id,
 
-   UUID guest_id,
+  @NotNull
+  UUID guest_id,
 
-   UUID room_id,
+  @NotNull
+  UUID reservation_id,
 
-   LocalDateTime checkin_date,
+  @NotNull
+  UUID room_id,
 
-   LocalDateTime checkout_estimated,
+  @NotNull
+  LocalDateTime checkin_date,
+  @NotNull
+  LocalDateTime checkout_estimated,
 
-   boolean is_active,
+  @NotNull
+  boolean is_active,
 
-   LocalDateTime created_at,
+  @NotNull
+  LocalDateTime created_at,
 
-   LocalDateTime updated_at
+  @NotNull
+  LocalDateTime updated_at
 ) {
 }

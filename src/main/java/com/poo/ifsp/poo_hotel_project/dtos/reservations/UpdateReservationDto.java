@@ -8,21 +8,19 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UpdateReservationDto(
-  @NotNull
+  @NotBlank
+  UUID id,
+
   UUID guest_id,
 
-  @NotNull
   UUID room_id,
 
-  @NotNull
   @FutureOrPresent
   LocalDateTime start_date,
 
-  @NotNull
   @Future
   LocalDateTime end_date,
 
-  @NotNull
   ReservationStatus status,
 
   @Digits(integer = 10, fraction = 2)

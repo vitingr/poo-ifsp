@@ -18,6 +18,9 @@ public class Checkout implements Serializable {
   private UUID id;
 
   @Column(nullable = false)
+  private UUID reservation_id;
+
+  @Column(nullable = false)
   private UUID guest_id;
 
   @Column(nullable = false)
@@ -25,9 +28,6 @@ public class Checkout implements Serializable {
 
   @Column(nullable = false)
   private LocalDateTime checkout_date;
-
-  @Column(nullable = false)
-  private LocalDateTime checkout_estimated;
 
   @Column(precision = 10, scale = 2, nullable = false)
   private BigDecimal total_price;
@@ -64,20 +64,20 @@ public class Checkout implements Serializable {
     this.checkout_date = checkout_date;
   }
 
-  public LocalDateTime getCheckout_estimated() {
-    return checkout_estimated;
-  }
-
-  public void setCheckout_estimated(LocalDateTime checkout_estimated) {
-    this.checkout_estimated = checkout_estimated;
-  }
-
   public BigDecimal getTotal_price() {
     return total_price;
   }
 
   public void setTotal_price(BigDecimal total_price) {
     this.total_price = total_price;
+  }
+
+  public UUID getReservation_id() {
+    return reservation_id;
+  }
+
+  public void setReservation_id(UUID reservation_id) {
+    this.reservation_id = reservation_id;
   }
 
   public void updateFromDto(UpdateCheckoutDto dto) {
@@ -89,9 +89,6 @@ public class Checkout implements Serializable {
     }
     if (dto.checkout_date() != null) {
       this.setCheckout_date(dto.checkout_date());
-    }
-    if (dto.checkout_estimated() != null) {
-      this.setCheckout_estimated(dto.checkout_estimated());
     }
     if (dto.total_price() != null) {
       this.setTotal_price(dto.total_price());

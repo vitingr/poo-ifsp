@@ -19,6 +19,9 @@ public class Checkin implements Serializable {
   private UUID id;
 
   @Column(nullable = false)
+  private UUID reservation_id;
+
+  @Column(nullable = false)
   private UUID guest_id;
 
   @Column(nullable = false)
@@ -68,6 +71,14 @@ public class Checkin implements Serializable {
 
   public void setCheckout_estimated(LocalDateTime checkout_estimated) {
     this.checkout_estimated = checkout_estimated;
+  }
+
+  public UUID getReservation_id() {
+    return reservation_id;
+  }
+
+  public void setReservation_id(UUID reservation_id) {
+    this.reservation_id = reservation_id;
   }
 
   public void updateFromDto(UpdateCheckinDto dto) {
