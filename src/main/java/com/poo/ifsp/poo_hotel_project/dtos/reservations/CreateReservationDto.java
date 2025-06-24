@@ -18,11 +18,6 @@ public record CreateReservationDto(
 
   @NotNull()
   @Future()
-  LocalDateTime end_date,
-
-  @NotNull()
-  @DecimalMin(value = "0.00", inclusive = false)
-  @Digits(integer = 10, fraction = 2)
-  BigDecimal total_price
+  LocalDateTime end_date
 ) {
 }

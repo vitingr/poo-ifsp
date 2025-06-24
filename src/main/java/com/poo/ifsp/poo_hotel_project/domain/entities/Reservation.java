@@ -1,6 +1,10 @@
 package com.poo.ifsp.poo_hotel_project.domain.entities;
 
+import com.poo.ifsp.poo_hotel_project.domain.enums.ReservationStatus;
+import com.poo.ifsp.poo_hotel_project.domain.enums.RoomType;
+import com.poo.ifsp.poo_hotel_project.dtos.reservations.UpdateReservationDto;
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -28,6 +32,10 @@ public class Reservation implements Serializable {
 
   @Column(nullable = false)
   private LocalDateTime end_date;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private ReservationStatus status = ReservationStatus.ACTIVE;
 
   @Column(precision = 10, scale = 2, nullable = false)
   private BigDecimal total_price;
@@ -111,5 +119,24 @@ public class Reservation implements Serializable {
 
   public void setUpdated_at(LocalDateTime updated_at) {
     this.updated_at = updated_at;
+  }
+
+  public ReservationStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(ReservationStatus status) {
+    this.status = status;
+  }
+
+  public void updateFromDto(UpdateReservationDto dto) {
+    if (dto.guest_id() != null) this.setGuest_id(dto.guest_id());
+    if (dto.room_id() != null) this.setRoom_id(dto.room_id());
+    if (dto.start_date() != null) this.setStart_date(dto.start_date());
+    if (dto.end_date() != null) this.setEnd_date(dto.end_date());
+    if (dto.status() != null) this.setStatus(dto.status());
+    if (dto.total_price() != null) this.setTotal_price(dto.total_price());
+
+    this.setUpdated_at(LocalDateTime.now());
   }
 }

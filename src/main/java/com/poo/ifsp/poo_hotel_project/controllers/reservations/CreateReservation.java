@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/reservations")
 public class CreateReservation {
   private final CreateReservationUseCase createReservationUseCase;
 
@@ -18,7 +20,7 @@ public class CreateReservation {
     this.createReservationUseCase = createReservationUseCase;
   }
 
-  @PostMapping("/reservations")
+  @PostMapping
   public ResponseEntity<Reservation> createReservation(@RequestBody @Valid CreateReservationDto createReservationDto) {
     Reservation savedReservation = createReservationUseCase.execute(createReservationDto);
     return ResponseEntity.status(HttpStatus.CREATED).body(savedReservation);
