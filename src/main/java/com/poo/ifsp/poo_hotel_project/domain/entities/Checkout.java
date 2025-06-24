@@ -1,8 +1,7 @@
 package com.poo.ifsp.poo_hotel_project.domain.entities;
 
-import com.poo.ifsp.poo_hotel_project.dtos.checkins.UpdateCheckinDto;
+import com.poo.ifsp.poo_hotel_project.dtos.checkouts.UpdateCheckoutDto;
 import jakarta.persistence.*;
-import jakarta.persistence.GenerationType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -10,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_checkins")
-public class Checkin implements Serializable {
+@Table(name = "tb_checkouts")
+public class Checkout implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
@@ -25,10 +24,13 @@ public class Checkin implements Serializable {
   private UUID room_id;
 
   @Column(nullable = false)
-  private LocalDateTime checkin_date;
+  private LocalDateTime checkout_date;
 
   @Column(nullable = false)
   private LocalDateTime checkout_estimated;
+
+  @Column(precision = 10, scale = 2, nullable = false)
+  private BigDecimal total_price;
 
   public UUID getId() {
     return id;
@@ -54,12 +56,12 @@ public class Checkin implements Serializable {
     this.room_id = room_id;
   }
 
-  public LocalDateTime getCheckin_date() {
-    return checkin_date;
+  public LocalDateTime getCheckout_date() {
+    return checkout_date;
   }
 
-  public void setCheckin_date(LocalDateTime checkin_date) {
-    this.checkin_date = checkin_date;
+  public void setCheckout_date(LocalDateTime checkout_date) {
+    this.checkout_date = checkout_date;
   }
 
   public LocalDateTime getCheckout_estimated() {
@@ -70,10 +72,29 @@ public class Checkin implements Serializable {
     this.checkout_estimated = checkout_estimated;
   }
 
-  public void updateFromDto(UpdateCheckinDto dto) {
-    if (dto.guest_id() != null) this.setGuest_id(dto.guest_id());
-    if (dto.room_id() != null) this.setRoom_id(dto.room_id());
-    if (dto.checkin_date() != null) this.setCheckin_date(dto.checkin_date());
-    if (dto.checkout_estimated() != null) this.setCheckout_estimated(dto.checkout_estimated());
+  public BigDecimal getTotal_price() {
+    return total_price;
+  }
+
+  public void setTotal_price(BigDecimal total_price) {
+    this.total_price = total_price;
+  }
+
+  public void updateFromDto(UpdateCheckoutDto dto) {
+    if (dto.guest_id() != null) {
+      this.setGuest_id(dto.guest_id());
+    }
+    if (dto.room_id() != null) {
+      this.setRoom_id(dto.room_id());
+    }
+    if (dto.checkout_date() != null) {
+      this.setCheckout_date(dto.checkout_date());
+    }
+    if (dto.checkout_estimated() != null) {
+      this.setCheckout_estimated(dto.checkout_estimated());
+    }
+    if (dto.total_price() != null) {
+      this.setTotal_price(dto.total_price());
+    }
   }
 }

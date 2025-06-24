@@ -9,5 +9,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface GetHotelRoomMapper {
   GetHotelRoomDto toDto(HotelRoom hotelRoom);
+
   List<GetHotelRoomDto> toDtoList(List<HotelRoom> hotelRooms);
 }
