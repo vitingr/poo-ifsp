@@ -23,13 +23,6 @@ public record GetCheckinDto(
   @NotNull
   LocalDateTime checkout_estimated,
 
-  @NotNull
-  boolean is_active,
-
-  @NotNull
-  LocalDateTime created_at,
-
-  @NotNull
-  LocalDateTime updated_at
+  String guest_name
 ) {
 }

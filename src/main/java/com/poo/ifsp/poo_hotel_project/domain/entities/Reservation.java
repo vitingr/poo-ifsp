@@ -35,7 +35,7 @@ public class Reservation implements Serializable {
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ReservationStatus status = ReservationStatus.ACTIVE;
+  private ReservationStatus status = ReservationStatus.PENDING;
 
   @Column(precision = 10, scale = 2, nullable = false)
   private BigDecimal total_price;

@@ -30,4 +30,14 @@ public class GetHotelRoomUseCase {
     return hotelRoomRepository.findAll().stream()
       .collect(Collectors.groupingBy(HotelRoom::getFloor));
   }
+
+  public  Map<Integer, List<HotelRoom>> findAvailableRooms() {
+    return hotelRoomRepository.findAvailableRooms().stream()
+      .collect(Collectors.groupingBy(HotelRoom::getFloor));
+  }
+
+  public  Map<Integer, List<HotelRoom>> findUnavailableRooms() {
+    return hotelRoomRepository.findUnavailableRooms().stream()
+      .collect(Collectors.groupingBy(HotelRoom::getFloor));
+  }
 }

@@ -25,8 +25,8 @@ public class GetCheckins {
 
   @GetMapping
   public ResponseEntity<List<GetCheckinDto>> getAll() {
-    var checkins = getCheckinsUseCase.findAll();
-    return ResponseEntity.ok(getCheckinMapper.toDtoList(checkins));
+    var checkins = getCheckinsUseCase.findAllWithGuest();
+    return ResponseEntity.ok(checkins);
   }
 
   @GetMapping("/{id}")

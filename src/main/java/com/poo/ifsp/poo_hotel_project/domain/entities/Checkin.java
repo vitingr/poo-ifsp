@@ -21,7 +21,7 @@ public class Checkin implements Serializable {
   @Column(nullable = false)
   private UUID reservation_id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, insertable = false, updatable = false)
   private UUID guest_id;
 
   @Column(nullable = false)
@@ -32,6 +32,10 @@ public class Checkin implements Serializable {
 
   @Column(nullable = false)
   private LocalDateTime checkout_estimated;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "guest_id", nullable = false)
+  private Guest guest;
 
   public UUID getId() {
     return id;

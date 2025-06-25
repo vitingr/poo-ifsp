@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CreateReservationUseCase {
@@ -35,6 +36,16 @@ public class CreateReservationUseCase {
     long nights = Duration.between(start, end).toDays();
     if (nights <= 0) {
       throw new RuntimeException("End date must be after start date");
+    }
+
+    List<Reservation> conflictingReservations = reservationRepository.findConflictingReservations(
+      dto.room_id(),
+      dto.start_date(),
+      dto.end_date()
+    );
+
+    if (!conflictingReservations.isEmpty()) {
+      throw new RuntimeException("Already have a reservation booked for this period.");
     }
 
     BigDecimal totalPrice = room.getPrice_per_night().multiply(BigDecimal.valueOf(nights));
