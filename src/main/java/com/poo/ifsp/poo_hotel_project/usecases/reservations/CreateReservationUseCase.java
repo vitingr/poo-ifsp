@@ -51,10 +51,13 @@ public class CreateReservationUseCase {
       throw new RuntimeException("End date must be after start date");
     }
 
+    List<ReservationStatus> blockingStatuses  = List.of(ReservationStatus.PENDING, ReservationStatus.ACTIVE);
+
     List<Reservation> conflictingReservations = reservationRepository.findConflictingReservations(
       dto.room_id(),
       dto.start_date(),
-      dto.end_date()
+      dto.end_date(),
+      blockingStatuses
     );
 
     if (!conflictingReservations.isEmpty()) {
