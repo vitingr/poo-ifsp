@@ -4,6 +4,7 @@ import com.poo.ifsp.poo_hotel_project.domain.entities.Checkout;
 import com.poo.ifsp.poo_hotel_project.domain.entities.Reservation;
 import com.poo.ifsp.poo_hotel_project.domain.enums.ReservationStatus;
 import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.CheckoutRepository;
+import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.GuestRepository;
 import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.HotelRoomRepository;
 import com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories.ReservationRepository;
 import com.poo.ifsp.poo_hotel_project.dtos.checkouts.CreateCheckoutDto;
@@ -16,18 +17,21 @@ public class CreateCheckoutUseCase {
   private final CreateCheckoutMapper createCheckoutMapper;
   private final CheckoutRepository checkoutRepository;
   private final HotelRoomRepository hotelRoomRepository;
-  ReservationRepository reservationRepository;
+  private final ReservationRepository reservationRepository;
+  private final GuestRepository guestRepository;
 
   public CreateCheckoutUseCase(
     CreateCheckoutMapper createCheckoutMapper,
     CheckoutRepository checkoutRepository,
     HotelRoomRepository hotelRoomRepository,
-    ReservationRepository reservationRepository
+    ReservationRepository reservationRepository,
+    GuestRepository guestRepository
   ) {
     this.checkoutRepository = checkoutRepository;
     this.createCheckoutMapper = createCheckoutMapper;
     this.hotelRoomRepository = hotelRoomRepository;
     this.reservationRepository = reservationRepository;
+    this.guestRepository = guestRepository;
   }
 
   @Transactional
@@ -44,9 +48,14 @@ public class CreateCheckoutUseCase {
     var hotelRoom = hotelRoomRepository.findById(dto.room_id())
       .orElseThrow(() -> new RuntimeException("Room not found"));
 
+    var guest = reservation.getGuest();
+
     reservation.setStatus(ReservationStatus.FINISHED);
     hotelRoom.setIs_available(true);
     hotelRoomRepository.save(hotelRoom);
+
+    checkout.setGuest(guest);
+    checkout.setRoom(hotelRoom);
 
     return checkoutRepository.save(checkout);
   }

@@ -27,8 +27,8 @@ public class GetReservations {
 
   @GetMapping
   public ResponseEntity<List<GetReservationDto>> getAll() {
-    var reservations = getReservationsUseCase.findAll();
-    return ResponseEntity.ok(getReservationMapper.toDtoList(reservations));
+    var reservations = getReservationsUseCase.findAllWithGuest();
+    return ResponseEntity.ok(reservations);
   }
 
   @GetMapping("/{id}")

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UpdateCheckinDto(
-  @NotBlank
+  @NotNull()
   UUID id,
 
   UUID guest_id,

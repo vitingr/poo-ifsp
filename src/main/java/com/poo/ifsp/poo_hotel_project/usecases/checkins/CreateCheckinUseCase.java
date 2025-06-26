@@ -42,11 +42,17 @@ public class CreateCheckinUseCase {
     var hotelRoom = hotelRoomRepository.findById(dto.room_id())
       .orElseThrow(() -> new RuntimeException("Room not found"));
 
+    var guest = reservation.getGuest();
+
     reservation.setStatus(ReservationStatus.ACTIVE);
     hotelRoom.setIs_available(false);
     hotelRoomRepository.save(hotelRoom);
 
     Checkin checkin = checkinMapper.toEntity(dto);
+
+    checkin.setGuest(guest);
+    checkin.setRoom(hotelRoom);
+
     return checkinRepository.save(checkin);
   }
 }

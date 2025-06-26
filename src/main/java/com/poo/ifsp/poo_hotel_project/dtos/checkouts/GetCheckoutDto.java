@@ -27,10 +27,8 @@ public record GetCheckoutDto(
   @DecimalMin(value = "0.0", inclusive = false)
   BigDecimal total_price,
 
-  @NotNull
-  LocalDateTime created_at,
+  String guest_name,
 
-  @NotNull
-  LocalDateTime updated_at
+  String room_code
 ) {
 }
