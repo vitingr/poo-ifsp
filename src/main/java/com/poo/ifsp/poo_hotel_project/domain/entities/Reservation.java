@@ -21,10 +21,10 @@ public class Reservation implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, insertable = false, updatable = false)
   private UUID guest_id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, insertable = false, updatable = false)
   private UUID room_id;
 
   @Column(nullable = false)
@@ -35,10 +35,18 @@ public class Reservation implements Serializable {
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private ReservationStatus status = ReservationStatus.ACTIVE;
+  private ReservationStatus status = ReservationStatus.PENDING;
 
   @Column(precision = 10, scale = 2, nullable = false)
   private BigDecimal total_price;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "guest_id", nullable = false)
+  private Guest guest;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "room_id", nullable = false)
+  private HotelRoom room;
 
   @Column(nullable = false, updatable = false)
   private LocalDateTime created_at;
@@ -127,6 +135,22 @@ public class Reservation implements Serializable {
 
   public void setStatus(ReservationStatus status) {
     this.status = status;
+  }
+
+  public Guest getGuest() {
+    return guest;
+  }
+
+  public void setGuest(Guest guest) {
+    this.guest = guest;
+  }
+
+  public HotelRoom getRoom() {
+    return room;
+  }
+
+  public void setRoom(HotelRoom room) {
+    this.room = room;
   }
 
   public void updateFromDto(UpdateReservationDto dto) {

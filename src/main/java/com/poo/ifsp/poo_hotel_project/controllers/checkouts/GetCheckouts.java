@@ -26,8 +26,8 @@ public class GetCheckouts {
 
   @GetMapping
   public ResponseEntity<List<GetCheckoutDto>> getAll() {
-    var checkouts = getCheckoutsUseCase.findAll();
-    return ResponseEntity.ok(getCheckoutMapper.toDtoList(checkouts));
+    var checkouts = getCheckoutsUseCase.findAllWithGuest();
+    return ResponseEntity.ok(checkouts);
   }
 
   @GetMapping("/{id}")

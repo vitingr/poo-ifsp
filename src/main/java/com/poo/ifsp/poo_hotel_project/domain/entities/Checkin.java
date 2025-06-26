@@ -21,10 +21,10 @@ public class Checkin implements Serializable {
   @Column(nullable = false)
   private UUID reservation_id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, insertable = false, updatable = false)
   private UUID guest_id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, insertable = false, updatable = false)
   private UUID room_id;
 
   @Column(nullable = false)
@@ -32,6 +32,14 @@ public class Checkin implements Serializable {
 
   @Column(nullable = false)
   private LocalDateTime checkout_estimated;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "guest_id", nullable = false)
+  private Guest guest;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "room_id", nullable = false)
+  private HotelRoom room;
 
   public UUID getId() {
     return id;
@@ -79,6 +87,22 @@ public class Checkin implements Serializable {
 
   public void setReservation_id(UUID reservation_id) {
     this.reservation_id = reservation_id;
+  }
+
+  public Guest getGuest() {
+    return guest;
+  }
+
+  public void setGuest(Guest guest) {
+    this.guest = guest;
+  }
+
+  public HotelRoom getRoom() {
+    return room;
+  }
+
+  public void setRoom(HotelRoom room) {
+    this.room = room;
   }
 
   public void updateFromDto(UpdateCheckinDto dto) {

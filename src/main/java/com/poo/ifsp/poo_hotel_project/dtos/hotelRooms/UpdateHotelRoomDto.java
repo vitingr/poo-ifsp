@@ -6,9 +6,6 @@ import java.util.UUID;
 import java.math.BigDecimal;
 
 public record UpdateHotelRoomDto (
-  @NotBlank()
-  UUID id,
-
   @Size(min = 2, max = 20)
   String room_code,
 

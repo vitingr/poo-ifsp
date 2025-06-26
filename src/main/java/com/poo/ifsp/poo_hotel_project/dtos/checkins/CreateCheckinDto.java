@@ -16,7 +16,6 @@ public record CreateCheckinDto(
   UUID room_id,
 
   @NotNull()
-  @PastOrPresent()
   LocalDateTime checkin_date,
 
   @NotNull()

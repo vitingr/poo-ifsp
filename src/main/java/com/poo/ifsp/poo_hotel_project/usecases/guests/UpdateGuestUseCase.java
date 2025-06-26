@@ -24,6 +24,9 @@ public class UpdateGuestUseCase {
         guest.setPhone(dto.phone());
         guest.setEmail(dto.email());
         guest.setAddress(dto.address());
+        guest.setDocument(dto.document());
+        guest.setFull_name(dto.full_name());
+        guest.setBirth_date(dto.birth_date() != null ? dto.birth_date().toLocalDate() : null);
         return guest;
       }
     );
