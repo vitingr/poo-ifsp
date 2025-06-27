@@ -1,6 +1,7 @@
 package com.poo.ifsp.poo_hotel_project.domain.interfaces.repositories;
 
 import com.poo.ifsp.poo_hotel_project.domain.entities.Reservation;
+import com.poo.ifsp.poo_hotel_project.domain.enums.ReservationStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,14 +15,15 @@ import java.util.UUID;
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
   @Query("""
   SELECT r FROM Reservation r
-  WHERE r.room_id = :roomId
-    AND r.status IN ('PENDING', 'ACTIVE')
+  WHERE r.room.id = :roomId
+    AND r.status IN :blockingStatuses
     AND r.start_date < :endDate
     AND r.end_date > :startDate
 """)
   List<Reservation> findConflictingReservations(
-     @Param("roomId") UUID roomId,
-     @Param("startDate") LocalDateTime startDate,
-     @Param("endDate") LocalDateTime endDate
+    @Param("roomId") UUID roomId,
+    @Param("startDate") LocalDateTime startDate,
+    @Param("endDate") LocalDateTime endDate,
+    @Param("blockingStatuses") List<ReservationStatus> blockingStatuses
   );
 }

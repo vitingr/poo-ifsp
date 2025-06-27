@@ -8,9 +8,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record UpdateReservationDto(
-  @NotNull()
-  UUID id,
-
   UUID guest_id,
 
   UUID room_id,
