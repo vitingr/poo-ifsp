@@ -21,5 +21,7 @@ public record UpdateGuestDto(
   String address,
 
   @Past()
-  LocalDateTime birth_date
+  LocalDateTime birth_date,
+
+  boolean is_active
 ) {}
